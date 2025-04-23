@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Nunito:wght@600;700&display=swap');
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: #4e5347;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Lato', sans-serif;
+}
+
+.menu, .bottom-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li, .bottom-menu li {
+    margin: 2px 0;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    color: #F4F3EF;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.sidebar a.active {
+    background: #6E7564;
+    font-weight: bold;
+    position: relative;
+}
+
+.sidebar a.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 60%;
+    width: 4px;
+    background: #4e5347;
+    border-radius: 2px;
+    transform: translateY(-50%);
+}
+
+.sidebar a:hover {
+    background: #616858;
+    transform: scale(1.02);
+}
+
+.sidebar a:hover .icon {
+    transform: scale(1.1);
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.bottom-menu {
+    margin-top: auto;
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    margin: 10px 12px;
+    background: #847F75;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar-profile:hover {
+    background: #9C9487;
+}
+
+.profile-initials {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #6E7564;
+    color: #F4F3EF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.profile-name {
+    font-weight: bold;
+    font-size: 13px;
+    color: #F4F3EF;
+}
+
+.profile-email {
+    font-size: 11px;
+    color: #D6C3A3;
+}
+
+.logout-button {
+    width: 90%;
+    background: #3d4237;
+    color: #F4F3EF;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 6px auto 12px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.logout-button:hover {
+    background: #4e5347;
+    transform: scale(1.02);
+}
+
+.logout-button .icon {
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+/* This is for Funsies */ 
+.sidebar-profile-wrapper {
+    position: relative;
+    justify-content: center;
+}
+  
+.profile-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #6E7564;
+    color: #F4F3EF;
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 4px;
+    z-index: 10;
+}
+  
+.sidebar-profile-wrapper:hover .profile-tooltip {
+    opacity: 1;
+}
+  

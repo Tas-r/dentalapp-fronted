@@ -1,0 +1,48 @@
+.provider-section {
+    padding: 2rem 5vw;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .dentist-profile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: flex-start;
+  }
+  
+  .dentist-photo {
+    flex: 0 0 200px;
+    max-width: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .dentist-info {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .dentist-info h3 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .dentist-section {
+    margin-bottom: 1rem;
+  }
+  
+  .dentist-section h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  .dentist-section p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
