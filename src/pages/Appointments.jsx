@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import ResponsiveSidebar from "../components/ResponsiveSidebar";
 import "../styles/Portal.css";
 import "../styles/Appointments.css";
 import { getAllAppointments, getDentists } from "../api";
@@ -104,7 +104,7 @@ function Appointments() {
 
     return (
         <div className="page-container">
-        <Sidebar activePage="appointments" />
+        <ResponsiveSidebar activePage="appointments" />
         <div className="dashboard-content">
             <h1 className="page-title">Appointments</h1>
 

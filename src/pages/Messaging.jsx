@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
+import ResponsiveSidebar from "../components/ResponsiveSidebar";
 import "../styles/Portal.css";
 import {
   getMessages,
@@ -12,6 +12,7 @@ import {
   getMessageById,
   refreshToken,
   getUserById,
+  getAllPatients
 } from "../api";
 import { jwtDecode } from "jwt-decode";
 
@@ -20,6 +21,7 @@ const Messaging = () => {
   const [inboxMessages, setInboxMessages] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [dentists, setDentists] = useState([]);
+  const [patients, setPatients] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [newMessage, setNewMessage] = useState({
     recipient_id: "",
@@ -51,18 +53,36 @@ const Messaging = () => {
           const userId = decoded.user_id || decoded.id;
           const userData = await getUserById(userId);
           setLoggedInUser(userData);
+          console.log("Logged in user data:", userData);
+    
+          if (userData.user_type === "dentist") {
+            try {
+              console.log("Fetching all patients...");
+              const patientsData = await getAllPatients();
+              console.log("Patients fetched:", patientsData);
+              setPatients(patientsData);
+            } catch (err) {
+              console.error("Error fetching patients:", err);
+            }
+          }
         }
-
+    
         const dentistsData = await getDentists();
+        console.log("Dentists fetched:", dentistsData);
         setDentists(dentistsData);
+    
         const messagesData = await getMessages();
         setMessages(messagesData);
+    
         const inboxData = await getInboxMessages();
         setInboxMessages(inboxData);
+    
       } catch (err) {
         handleError(err);
       }
     };
+    
+
     fetchData();
   }, []);
 
@@ -165,14 +185,18 @@ const Messaging = () => {
 
   return (
     <div className="portal-container">
-      <Sidebar activePage="messages" />
+      <ResponsiveSidebar activePage="messages" />
       <div className="main-content dashboard-content">
         <h1 className="page-title">Messaging</h1>
         {error && <div className="error-message">{error}</div>}
 
         <div className="view-toggle">
-          <button className={view === "inbox" ? "active" : ""} onClick={() => setView("inbox")}>Inbox ({inboxMessages.length})</button>
-          <button className={view === "all" ? "active" : ""} onClick={() => setView("all")}>All Messages</button>
+          <button className={view === "inbox" ? "active" : ""} onClick={() => setView("inbox")}>
+            Inbox ({inboxMessages.length})
+          </button>
+          <button className={view === "all" ? "active" : ""} onClick={() => setView("all")}>
+            All Messages
+          </button>
         </div>
 
         <div className="message-list">
@@ -222,10 +246,7 @@ const Messaging = () => {
                                   type="text"
                                   value={replyMessage.subject}
                                   onChange={(e) =>
-                                    setReplyMessage({
-                                      ...replyMessage,
-                                      subject: e.target.value,
-                                    })
+                                    setReplyMessage({ ...replyMessage, subject: e.target.value })
                                   }
                                   placeholder="Subject"
                                   required
@@ -233,10 +254,7 @@ const Messaging = () => {
                                 <textarea
                                   value={replyMessage.body}
                                   onChange={(e) =>
-                                    setReplyMessage({
-                                      ...replyMessage,
-                                      body: e.target.value,
-                                    })
+                                    setReplyMessage({ ...replyMessage, body: e.target.value })
                                   }
                                   placeholder="Type your reply..."
                                   required
@@ -265,11 +283,38 @@ const Messaging = () => {
                 required
               >
                 <option value="">Select Recipient</option>
-                {dentists.map((dentist) => (
-                  <option key={dentist.id} value={dentist.user.id}>
-                    Dr. {dentist.user.last_name || dentist.user.username} ({dentist.specialization})
-                  </option>
-                ))}
+                {loggedInUser?.user_type === "dentist" && (
+                  <>
+                    {dentists
+                      .filter((d) => d.user.id !== loggedInUser.id)
+                      .map((dentist) => (
+                        <option key={`dentist-${dentist.user.id}`} value={dentist.user.id}>
+                          Dr. {dentist.user.last_name || dentist.user.username} ({dentist.specialization})
+                        </option>
+                      ))}
+                    {patients
+                      ?.filter((p) => p.user.id !== loggedInUser.id)
+                      .map((patient) => {
+                        const user = patient.user;
+                        const name = `${user.first_name || ""} ${user.last_name || ""}`.trim();
+                        const label = name || user.username || `Patient ${user.id}`;
+                        return (
+                          <option key={`patient-${user.id}`} value={user.id}>
+                            {label}
+                          </option>
+                        );
+                      })}
+                  </>
+                )}
+                {loggedInUser?.user_type !== "dentist" && (
+                  dentists
+                    .filter((d) => d.user.id !== loggedInUser.id)
+                    .map((dentist) => (
+                      <option key={`dentist-${dentist.user.id}`} value={dentist.user.id}>
+                        Dr. {dentist.user.last_name || dentist.user.username} ({dentist.specialization})
+                      </option>
+                    ))
+                )}
               </select>
               <input
                 type="text"

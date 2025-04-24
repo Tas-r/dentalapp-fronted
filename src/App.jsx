@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Index from "./pages/index/Index";
+import Index from "./pages/Index";
 import OurPractice from "./pages/index/OurPractice";
 import CommunityOutreach from "./pages/index/CommunityOutreach";
-import Services from "./pages/index/Services";
+import Services from "./pages/index/services";
 import Technology from "./pages/index/Technology";
 import AdditionalInfo from "./pages/index/AdditionalInfo";
 import Login from "./pages/Login";

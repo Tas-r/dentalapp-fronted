@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import ResponsiveSidebar from "../components/ResponsiveSidebar";
 import "../styles/Portal.css";
 import { getDentistById, getServiceById } from "../api";
 
@@ -45,7 +45,7 @@ function AppointmentConfirmation() {
 
     return (
         <div className="page-container">
-            <Sidebar />
+            <ResponsiveSidebar />
             <div className="dashboard-content">
                 <h1 className="page-title">Appointment Confirmed</h1>
                 <div className="confirmation-wrapper" style={{ maxWidth: "600px", margin: "0 auto" }}>

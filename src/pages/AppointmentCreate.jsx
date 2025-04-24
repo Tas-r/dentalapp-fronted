@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
+import ResponsiveSidebar from "../components/ResponsiveSidebar";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../styles/Portal.css";
@@ -127,7 +127,7 @@ function AppointmentCreate() {
 
     return (
         <div className="page-container">
-        <Sidebar activePage="appointments" />
+        <ResponsiveSidebar activePage="appointments" />
         <div className="dashboard-content">
             <h1 className="page-title">Schedule an Appointment</h1>
 

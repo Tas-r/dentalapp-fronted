@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
+import ResponsiveSidebar from "../components/ResponsiveSidebar";
 import "../styles/Portal.css";
 import { getAllDocuments, uploadDocument, deleteDocument } from "../api";
 import { API_BASE_URL } from "../../constants";
@@ -72,7 +72,7 @@ function Documents() {
 
     return (
         <div className="page-container">
-            <Sidebar activePage="documents" />
+            <ResponsiveSidebar activePage="documents" />
             <div className="dashboard-content">
                 <h1 className="page-title">My Documents</h1>
 

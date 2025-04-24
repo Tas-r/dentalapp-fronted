@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../../styles/Portal.css";
 import "../../styles/OurPractice.css";
 import Footer from "../../components/Footer";
+import IndexResponsiveSidebar from "../../components/IndexResponsiveSidebar";
 
 function Profile({ name, title, photo, sections }) {
   return (
@@ -34,38 +35,7 @@ function OurPractice() {
         </button>
       </header>
 
-      <nav className="main-nav">
-      <button 
-          onClick={() => navigate("/")} 
-          className={location.pathname === "/" ? "nav-button active" : "nav-button"}>
-          Home
-        </button>
-        <button 
-          onClick={() => navigate("/our-practice")} 
-          className={location.pathname === "/our-practice" ? "nav-button active" : "nav-button"}>
-          Our Practice
-        </button>
-        <button 
-          onClick={() => navigate("/community-outreach")} 
-          className={location.pathname === "/community-outreach" ? "nav-button active" : "nav-button"}>
-          Community Outreach
-        </button>
-        <button 
-          onClick={() => navigate("/services")} 
-          className={location.pathname === "/services" ? "nav-button active" : "nav-button"}>
-          Dental Services
-        </button>
-        <button 
-          onClick={() => navigate("/technology")} 
-          className={location.pathname === "/technology" ? "nav-button active" : "nav-button"}>
-          Technology
-        </button>
-        <button 
-          onClick={() => navigate("/additional-info")} 
-          className={location.pathname === "/additional-info" ? "nav-button active" : "nav-button"}>
-          Additional Info
-        </button>
-      </nav>
+      <IndexResponsiveSidebar activePage="our-practice" />
 
       <section className="content-section">
       <h2>About Our Practice</h2>

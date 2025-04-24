@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import ResponsiveSidebar from "../components/ResponsiveSidebar";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../styles/Portal.css";
@@ -132,7 +132,7 @@ function AppointmentEdit() {
             </div>
         )}
         <div className="page-container">
-            <Sidebar activePage="appointments" />
+            <ResponsiveSidebar activePage="appointments" />
             <div className="dashboard-content">
             <h1 className="page-title">Edit Appointment</h1>
             {appointment ? (

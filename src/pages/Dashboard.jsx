@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
+import ResponsiveSidebar from "../components/ResponsiveSidebar";
 import "../styles/Portal.css";
 import { getUpcomingAppointments, getNotifications, getDentists } from "../api";
+import { FaCalendarAlt, FaComments, FaFileMedical } from "react-icons/fa";
+import { Link } from "react-router-dom"; 
 
 function Dashboard() {
     const [appointment, setAppointment] = useState(null);
@@ -59,7 +61,7 @@ function Dashboard() {
 
     return (
         <div className="page-container">
-            <Sidebar activePage="dashboard" />
+            <ResponsiveSidebar activePage="dashboard" />
             <div className="dashboard-content">
                 <h1 className="page-title">Dashboard</h1>
 
@@ -98,18 +100,30 @@ function Dashboard() {
                     <div className="card quick-actions">
                         <h2>Quick Actions</h2>
                         <div className="actions-grid">
-                            <div className="action">
-                                <img src="/calendar-icon.png" alt="Schedule" />
-                                <p>Schedule an appointment</p>
+                        <Link to="/appointment/create" style={{ textDecoration: "none" }}>
+                        <div className="action" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                            <FaCalendarAlt style={{ fontSize: "60px", color: "#3A3A3A" }} />
+                            <div style={{ fontSize: "14px", marginBottom: "15px", color: "#3A3A3A", fontFamily: "Nunito, sans-serif" }}>
+                            Create an Appointment
                             </div>
-                            <div className="action">
-                                <img src="/update-icon.png" alt="Update Info" />
-                                <p>Update your information</p>
+                        </div>
+                        </Link>
+                        <Link to="/inbox" style={{ textDecoration: "none" }}>
+                        <div className="action" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                            <FaComments style={{ fontSize: "60px", color: "#3A3A3A" }} />
+                            <div style={{ fontSize: "14px", marginBottom: "15px", color: "#3A3A3A", fontFamily: "Nunito, sans-serif" }}>
+                            View Messages
                             </div>
-                            <div className="action">
-                                <img src="/messages-icon.png" alt="Messages" />
-                                <p>View messages</p>
+                        </div>
+                        </Link>
+                        <Link to="/history" style={{ textDecoration: "none" }}>
+                        <div className="action" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                            <FaFileMedical style={{ fontSize: "60px", color: "#3A3A3A" }} />
+                            <div style={{ fontSize: "14px", marginBottom: "15px", color: "#3A3A3A", fontFamily: "Nunito, sans-serif" }}>
+                            View History
                             </div>
+                        </div>
+                        </Link>
                         </div>
                     </div>
                 </div>
