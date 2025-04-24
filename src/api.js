@@ -11,7 +11,7 @@ const getAuthHeaders = () => {
 // AUTHENTICATION // AUTHENTICATION // AUTHENTICATION // AUTHENTICATION // AUTHENTICATION // AUTHENTICATION //
 
 export const loginUser = async (username, password) => {
-    const res = await axios.post(`${API_BASE_URL}/users/login/`, {
+    const res = await axios.post(`${API_BASE_URL}users/login/`, {
       username,
       password,
     }, { withCredentials: true });
